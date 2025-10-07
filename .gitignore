@@ -4,3 +4,13 @@ result-*
 
 # Ignore automatically generated direnv output
 .direnv
+
+# Ignore build artifacts
+build
+
+# Even though they are under build, we absolutely do not want very large
+# kernel libraries in the repo's history.
+*.so
+
+# Editor files
+.*

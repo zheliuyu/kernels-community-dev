@@ -2,7 +2,7 @@
   description = "Flake for rwkv kernels";
 
   inputs = {
-    kernel-builder.url = "github:huggingface/kernel-builder/rocm-per-source-arches";
+    kernel-builder.url = "github:huggingface/kernel-builder";
   };
 
   outputs =

@@ -2,7 +2,7 @@
   description = "Flake for yoso kernels";
 
   inputs = {
-    kernel-builder.url = "github:huggingface/kernel-builder/";
+    kernel-builder.url = "github:huggingface/kernel-builder";
   };
 
   outputs =
@@ -11,7 +11,7 @@
       kernel-builder,
     }:
     kernel-builder.lib.genFlakeOutputs {
+      inherit self;
       path = ./.;
-      rev = self.shortRev or self.dirtyShortRev or self.lastModifiedDate;
     };
 }

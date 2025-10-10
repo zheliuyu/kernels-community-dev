@@ -98,11 +98,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759923910,
-        "narHash": "sha256-2CJ6IN/+5cwHdpUSonU8jXhPR1atdPW4OFcLN2PwH3U=",
+        "lastModified": 1760097360,
+        "narHash": "sha256-nwQoIwtT5zuV3QF9loxKVjGdS2Y55L4Lkfo3N/2eoTQ=",
         "owner": "huggingface",
         "repo": "kernel-builder",
-        "rev": "e832e87db047c948fffd631042e4b1a8d88d0143",
+        "rev": "0cf2febab3e9ff2eca9b43115776b52c2f253f7f",
         "type": "github"
       },
       "original": {

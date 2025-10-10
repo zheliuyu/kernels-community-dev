@@ -73,11 +73,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1759493343,
-        "narHash": "sha256-8fhl0gwMAnOkQbogPIVq+Fha+Yeq52FaRXfwF+F9Q+k=",
+        "lastModified": 1759851564,
+        "narHash": "sha256-Xybkhm0FM/VzlZ5WndTYq/X/9MAeddd4EQ2Vz8GdkOA=",
         "owner": "huggingface",
         "repo": "hf-nix",
-        "rev": "b1fc3a18b52447a0f24bc6884418edc5e66082b9",
+        "rev": "351655d9f124805ed7c1193aa61550ce245f4570",
         "type": "github"
       },
       "original": {
@@ -98,11 +98,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759501552,
-        "narHash": "sha256-Wnrw3l22y9jdL4C9TGxznIB4qiQznWLtU9ykCbK49EE=",
+        "lastModified": 1760097360,
+        "narHash": "sha256-nwQoIwtT5zuV3QF9loxKVjGdS2Y55L4Lkfo3N/2eoTQ=",
         "owner": "huggingface",
         "repo": "kernel-builder",
-        "rev": "ed5722d95d9395fbc7d0239a97208f2b04147dfa",
+        "rev": "0cf2febab3e9ff2eca9b43115776b52c2f253f7f",
         "type": "github"
       },
       "original": {

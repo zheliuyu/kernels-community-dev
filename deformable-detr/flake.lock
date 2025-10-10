@@ -73,16 +73,15 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1759596967,
-        "narHash": "sha256-UapLCqsNGAihZT+EwHXUqpylioyjxDZbOLqaBQYZNek=",
+        "lastModified": 1759851564,
+        "narHash": "sha256-Xybkhm0FM/VzlZ5WndTYq/X/9MAeddd4EQ2Vz8GdkOA=",
         "owner": "huggingface",
         "repo": "hf-nix",
-        "rev": "aed1066af95f6ca5b80b1d67566499a0ca5a8a85",
+        "rev": "351655d9f124805ed7c1193aa61550ce245f4570",
         "type": "github"
       },
       "original": {
         "owner": "huggingface",
-        "ref": "torch-2.9.0-rc6",
         "repo": "hf-nix",
         "type": "github"
       }
@@ -99,11 +98,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759846586,
-        "narHash": "sha256-hYnpvqbD9TSdsgHdQsQnyfNFaZxIky5SKEiZIY5RXRc=",
+        "lastModified": 1760097360,
+        "narHash": "sha256-nwQoIwtT5zuV3QF9loxKVjGdS2Y55L4Lkfo3N/2eoTQ=",
         "owner": "huggingface",
         "repo": "kernel-builder",
-        "rev": "5a764f54d752e76e6f39a4ca470fdc9000b62ef8",
+        "rev": "0cf2febab3e9ff2eca9b43115776b52c2f253f7f",
         "type": "github"
       },
       "original": {

@@ -48,5 +48,5 @@ class ScatterMoEGatedMLP(nn.Module):
             gates=routing_weights
         )
         layer_output = layer_output.view(bsz, length, emb_size)
-        return layer_output
+        return layer_output, router_logits
 

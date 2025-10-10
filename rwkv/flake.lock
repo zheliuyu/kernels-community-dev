@@ -73,11 +73,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1759385472,
-        "narHash": "sha256-a1YMZp3Yc1RJfLIObRKBTTbjMKL91IYbzTjG/HNZN+I=",
+        "lastModified": 1759851564,
+        "narHash": "sha256-Xybkhm0FM/VzlZ5WndTYq/X/9MAeddd4EQ2Vz8GdkOA=",
         "owner": "huggingface",
         "repo": "hf-nix",
-        "rev": "050dd78a64cb58fb1f9fb29ca498c73107a9a13e",
+        "rev": "351655d9f124805ed7c1193aa61550ce245f4570",
         "type": "github"
       },
       "original": {
@@ -98,16 +98,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1759391810,
-        "narHash": "sha256-7thAD4hsNGvDb59rne7Vt0JsdyjK/DaeW3PIXWjueYc=",
+        "lastModified": 1760035358,
+        "narHash": "sha256-N5vmCrgwcIluPclf/hmnofLK77EJJYh5PR8SRvw++es=",
         "owner": "huggingface",
         "repo": "kernel-builder",
-        "rev": "6029e51ead3bc6328fc817be44a546f366b84d93",
+        "rev": "a48cbd19ae7e425dfc1865188ef06dac43ab9244",
         "type": "github"
       },
       "original": {
         "owner": "huggingface",
-        "ref": "rocm-per-source-arches",
         "repo": "kernel-builder",
         "type": "github"
       }

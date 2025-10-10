@@ -1,0 +1,32 @@
+[general]
+name = "yoso"
+universal = false
+
+[torch]
+src = [
+  "torch-ext/torch_binding.cpp",
+  "torch-ext/torch_binding.h",
+]
+
+[kernel.yoso]
+depends = ["torch"]
+backend = "cuda"
+cuda-capabilities = [
+    "8.0",
+    "8.9",
+    "9.0",
+    "10.0",
+    "12.0",
+]
+include = ["."]
+src = [
+    "yoso/fast_lsh_cumulation_cuda.cu",
+    "yoso/fast_lsh_cumulation_cuda.h",
+    "yoso/fast_lsh_cumulation_torch.cpp",
+    "yoso/fast_lsh_cumulation.h",
+    "yoso/fast_lsh_cumulation.cu",
+    "yoso/common_cuda.h",
+    "yoso/common.h",
+    "yoso/common_cuda_device.h",
+]
+

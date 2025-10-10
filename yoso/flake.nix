@@ -1,12 +1,17 @@
 {
-  description = "Flake for Torch kernel extension";
+  description = "Flake for yoso kernels";
+
   inputs = {
     kernel-builder.url = "github:huggingface/kernel-builder";
   };
+
   outputs =
-    { self, kernel-builder }:
+    {
+      self,
+      kernel-builder,
+    }:
     kernel-builder.lib.genFlakeOutputs {
+      inherit self;
       path = ./.;
-      rev = self.shortRev or self.dirtyShortRev or self.lastModifiedDate;
     };
 }

@@ -1,5 +1,7 @@
 import argparse
 import logging
+import os
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -20,6 +22,9 @@ def parse_args() -> argparse.Namespace:
         action="append",
         default=[".github", "scripts"],
         help="Directory name to skip. Can be passed multiple times. Defaults to .github.",
+    )
+    parser.add_argument(
+        "--clear-cache", action="store_true", help="Whether to clear the cache after running `kernels check`."
     )
     parser.add_argument(
         "--dry-run",
@@ -54,7 +59,37 @@ def discover_kernel_dirs(root: Path, excludes: list[str]) -> list[str]:
     return directories
 
 
-def run_kernels_checks(directories: list[str], dry_run: bool) -> list[str]:
+def _cache_root() -> Path:
+    if hub_cache := os.getenv("HF_HUB_CACHE"):
+        return Path(hub_cache).expanduser()
+    hf_home = os.getenv("HF_HOME")
+    if hf_home:
+        return Path(hf_home).expanduser() / "hub"
+    return Path.home() / ".cache" / "huggingface" / "hub"
+
+
+def _delete_kernel_cache(org: str, directory: str) -> None:
+    cache_root = _cache_root()
+    if not cache_root.exists():
+        logging.debug("Cache root %s does not exist; nothing to delete.", cache_root)
+        return
+
+    pattern = f"models--{org}--{directory}*"
+    matches = list(cache_root.glob(pattern))
+    if not matches:
+        logging.debug(f"No cache entries matched {pattern} under {cache_root}.")
+        return
+
+    for match in matches:
+        try:
+            shutil.rmtree(match)
+        except OSError as err:
+            logging.error(f"❌ Cache cleanup failed for {match}: {err}")
+        else:
+            logging.debug(f"Deleted cache entry {match}")
+
+
+def run_kernels_checks(directories: list[str], dry_run: bool, clear_cache: bool = False) -> list[str]:
     failures = []
     for directory in directories:
         target = f"{ORG}/{directory}"
@@ -62,9 +97,18 @@ def run_kernels_checks(directories: list[str], dry_run: bool) -> list[str]:
         logging.info("🧪 Running %s", " ".join(command))
         if dry_run:
             continue
-        completed = subprocess.run(command, check=False)
+        try:
+            completed = subprocess.run(command, check=False)
+        except Exception as err:
+            logging.error(f"❌ Execution failed for {directory}: {err}")
+            failures.append(directory)
+            continue
         if completed.returncode != 0:
             failures.append(directory)
+
+        if clear_cache:
+            _delete_kernel_cache(ORG, directory)
+
     return failures
 
 
@@ -91,7 +135,7 @@ def main() -> int:
 
     logging.info(f"🧪 Checking {len(directories)} kernel directories: {directories=}.")
 
-    failures = run_kernels_checks(directories, args.dry_run)
+    failures = run_kernels_checks(directories, args.dry_run, args.clear_cache)
     if failures:
         logging.error(
             "❌ kernels check failed for %d directories: %s",

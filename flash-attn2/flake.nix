@@ -14,8 +14,9 @@
       path = ./.;
       rev = self.shortRev or self.dirtyShortRev or self.lastModifiedDate;
 
-      pythonCheckInputs = pkgs: with pkgs; [ 
-        einops
-      ];
+      pythonCheckInputs =
+        pkgs: with pkgs; [
+          einops
+        ];
     };
 }

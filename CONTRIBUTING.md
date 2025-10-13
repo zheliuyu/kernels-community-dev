@@ -11,6 +11,7 @@ Here is a small breakdown of the steps to add a new kernel:
 6. Add a `torch-ext` directory that will make the kernel accessible from Python using pytorch extension mechanism.
 7. Add a `torch_binding.cpp` file to the `torch-ext` directory that registers the kernel as a Torch op (if it's not a triton kernel).
 8. Add a directory with the same name as the kernel inside the `torch-ext` directory, and add a `__init__.py` file to the directory, there you should be able to access the kernel using the `._ops` namespace. For triton kernels, you can include all the source files in the `torch-ext` directory.
+9. To test if the kernel builds successfully, you can use the `kernel-builder`.
 
 For more details check [writing hub kernels](https://github.com/huggingface/kernel-builder/blob/main/docs/writing-kernels.md) and [building kernels with Nix](https://github.com/huggingface/kernel-builder/blob/main/docs/nix.md), and examples from [kernels-community](https://github.com/huggingface/kernels-community).
 

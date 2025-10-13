@@ -14,11 +14,12 @@
       path = ./.;
       rev = self.shortRev or self.dirtyShortRev or self.lastModifiedDate;
 
-      pythonCheckInputs = pkgs: with pkgs; [ 
-        tqdm
-        py-cpuinfo
-        importlib-metadata
-        torchmetrics
-      ];
+      pythonCheckInputs =
+        pkgs: with pkgs; [
+          tqdm
+          py-cpuinfo
+          importlib-metadata
+          torchmetrics
+        ];
     };
 }

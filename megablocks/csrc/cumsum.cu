@@ -3,7 +3,7 @@
 #undef CUB_WRAPPED_NAMESPACE
 #define CUB_WRAPPED_NAMESPACE megablocks
 
-#include "new_cumsum.h"
+#include "cumsum.h"
 #include <cstdint>
 #include <cub/cub.cuh>
 #include <c10/cuda/CUDAStream.h>

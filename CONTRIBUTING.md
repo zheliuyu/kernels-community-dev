@@ -17,7 +17,8 @@ We are looking for kernels that are:
 2. The kernel will be reviewed and accepted or rejected.
 3. If accepted, we will ask you to create a PR, and we will build the kernel and upload it to the Hub. We will then add you as a CODEOWNER of the kernel.
 
-## Adding a new kernel
+## How to add a new kernel?
+
 Here is a small breakdown of the steps to add a new kernel:
 
 1. Create a new directory in the `kernels-community` repository with the kernel name.
@@ -34,6 +35,6 @@ For more details check [writing hub kernels](https://github.com/huggingface/kern
 
 When you are done, you can open a PR to the `kernels-community` repository. Please make sure to title the PR with the kernel name, followed by a semicolon and a short description, for example: `example: add example kernel`, and do not include build outputs in the PR.
 
-## Benchmarking kernels
+## How to benchmark a kernel?
 
 #TODO: Add benchmarking instructions after https://github.com/huggingface/kernels-uvnotes is ready.

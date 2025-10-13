@@ -1,5 +1,22 @@
 # Contributing <img src="https://github.com/user-attachments/assets/64a652f3-0cd3-4829-b3c1-df13f7933569" width="50" height="50" style="vertical-align:middle;"> to kernels-community 
 
+## Which kernels are accepted?
+
+We are looking for kernels that are:
+
+- Useful / Impactful for the community.
+- Have a clear use case.
+- Clearly documented.
+- Extensively tested.
+- Have a good performance compared to the naive PyTorch implementation + torch.compile.
+
+
+## How to get your kernel accepted?
+
+1. Open an issue/feature request with the kernel details, benchmark results and a link to the kernel's source code.
+2. The kernel will be reviewed and accepted or rejected.
+3. If accepted, we will ask you to create a PR, and we will build the kernel and upload it to the Hub. We will then add you as a CODEOWNER of the kernel.
+
 ## Adding a new kernel
 Here is a small breakdown of the steps to add a new kernel:
 
@@ -20,20 +37,3 @@ When you are done, you can open a PR to the `kernels-community` repository. Plea
 ## Benchmarking kernels
 
 #TODO: Add benchmarking instructions after https://github.com/huggingface/kernels-uvnotes is ready.
-
-## Which kernels are accepted?
-
-We are looking for kernels that are:
-
-- Useful / Impactful for the community.
-- Have a clear use case.
-- Clearly documented.
-- Extensively tested.
-- Have a good performance compared to the naive PyTorch implementation + torch.compile.
-
-
-## How to get your kernel accepted?
-
-1. Open an issue/feature request with the kernel details, benchmark results and a link to the kernel's source code.
-2. The kernel will be reviewed and accepted or rejected.
-3. If accepted, we will ask you to create PR, and we will build the kernel and upload it to the Hub. We will then add you as a CODEOWNER of the kernel.

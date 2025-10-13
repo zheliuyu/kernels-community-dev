@@ -11,8 +11,8 @@
       kernel-builder,
     }:
     kernel-builder.lib.genFlakeOutputs {
+      inherit self;
       path = ./.;
-      rev = self.shortRev or self.dirtyShortRev or self.lastModifiedDate;
 
       pythonCheckInputs =
         pkgs: with pkgs; [

@@ -11,12 +11,10 @@
 # limitations under the License.
 
 
-from .layers import RMSNorm, MLPWithSwiGLU, flash_attn_func, flash_attn_varlen_func
+from .layers import flash_attn_func, flash_attn_varlen_func
 
 
 __all__ = [
-    "RMSNorm",
-    "MLPWithSwiGLU",
     "flash_attn_func",
     "flash_attn_varlen_func",
 ]

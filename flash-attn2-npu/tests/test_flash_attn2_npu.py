@@ -14,55 +14,9 @@
 import torch
 import torch_npu
 from fusion_torch_npu import (
-    RMSNorm,
-    MLPWithSwiGLU,
     flash_attn_func,
     flash_attn_varlen_func,
 )
-
-
-def test_rmsnorm():
-    device = torch.device("npu")
-    dtype = torch.bfloat16
-    x = torch.randn(1024, 1024, device=device, dtype=dtype)
-    weight = torch.randn(1024, device=device, dtype=dtype)
-    variance_epsilon = 1e-6
-
-    rmsnorm_layer = RMSNorm()
-    output = rmsnorm_layer(x)
-
-    variance = x.pow(2).mean(-1, keepdim=True)
-    x = x * torch.rsqrt(variance + variance_epsilon)
-    ref_out = weight * x.to(torch.bfloat16)
-    torch.testing.assert_close(output, ref_out, atol=1e-2, rtol=1e-2)
-
-
-def test_mlp_with_swiglu():
-    device = torch.device("npu")
-    dtype = torch.bfloat16
-    batch_size = 4
-    seq_length = 128
-    hidden_size = 512
-    intermediate_size = 2048
-
-    hidden_state = torch.randn(
-        batch_size, seq_length, hidden_size, device=device, dtype=dtype
-    )
-
-    mlp_layer = MLPWithSwiGLU()
-    gate_proj = torch.nn.Linear(hidden_size, intermediate_size).to(device)
-    up_proj = torch.nn.Linear(hidden_size, intermediate_size).to(device)
-    down_proj = torch.nn.Linear(intermediate_size // 2, hidden_size).to(device)
-
-    output = mlp_layer(hidden_state)
-
-    gate_up = torch.cat((gate_proj(hidden_state), up_proj(hidden_state)), dim=-1)
-    swish = gate_up[:, :, :intermediate_size] * torch.sigmoid(
-        gate_up[:, :, :intermediate_size]
-    )
-    ref_out = down_proj(swish)
-
-    torch.testing.assert_close(output, ref_out, atol=1e-2, rtol=1e-2)
 
 
 def test_flash_attention():

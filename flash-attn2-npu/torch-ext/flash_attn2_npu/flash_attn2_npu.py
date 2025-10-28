@@ -16,38 +16,7 @@ import math
 
 import torch
 import torch_npu
-
-
-class RMSNorm(torch.nn.Module):
-    def forward(self, x):
-        """
-        Forward pass through the RMSNorm layer.
-        Args:
-            x (torch.Tensor): The input tensor.
-        Returns:
-            torch.Tensor: The output tensor after applying npu_rms_norm.
-        Fusion kernels list:
-            Cast + Square + ReduceMeanD + Add + Rsqrt + Mul + Cast + Mul
-        """
-        return torch_npu.npu_rms_norm(x, self.weight, epsilon=self.variance_epsilon)[0]
-
-
-class MLPWithSwiGLU(torch.nn.Module):
-    def forward(self, hidden_state):
-        """
-        Forward pass through the MLP layer with SwiGLU.
-        Args:
-            hidden_state (torch.Tensor): The input tensor.
-        Returns:
-            torch.Tensor: The output tensor after computing the MLP with npu_swiglu.
-        Fusion kernels list:
-            Slice + Slice + Swish + Mul
-        """
-        gate_up = torch.cat(
-            (self.gate_proj(hidden_state), self.up_proj(hidden_state)), dim=-1
-        )
-        down_proj = self.down_proj(torch_npu.npu_swiglu(gate_up))
-        return down_proj
+from ._ops import add_op_namespace_prefix
 
 
 # FlashAttention2 is supported on Ascend NPU with down-right aligned causal mask by default.
@@ -79,6 +48,7 @@ def get_attn_mask_npu(device):
     return ATTN_MASK_NPU_CACHE[device]
 
 
+@torch.library.custom_op(add_op_namespace_prefix("flash_attn2_npu"), mutates_args=())
 def flash_attn_func(
     q,
     k,
